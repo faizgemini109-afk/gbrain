@@ -5,7 +5,7 @@
   "type": "module",
   "main": "code/server.mjs",
   "scripts": {
-    "start": "node code/server.mjs",
+    "start": "node init && node code/server.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "vitest run tests/e2e/voice-roundtrip.test.mjs",
