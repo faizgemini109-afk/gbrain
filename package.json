@@ -29,14 +29,14 @@
     "./ingestion/test-harness": "./src/core/ingestion/test-harness.ts"
   },
   "scripts": {
-    "dev": "bun run src/cli.ts",
-    "build": "bun build --compile --outfile bin/gbrain src/cli.ts",
-    "build:all": "bun build --compile --target=bun-darwin-arm64 --outfile bin/gbrain-darwin-arm64 src/cli.ts && bun build --compile --target=bun-linux-x64 --outfile bin/gbrain-linux-x64 src/cli.ts",
-    "build:admin": "cd admin && bun run build && cd .. && bun run scripts/build-admin-embedded.ts",
-    "build:admin-embedded": "bun run scripts/build-admin-embedded.ts",
-    "build:schema": "bash scripts/build-schema.sh",
-    "build:llms": "bun run scripts/build-llms.ts",
-    "build:pglite-snapshot": "bun run scripts/build-pglite-snapshot.ts",
+    "dev": "node init && bun run src/cli.ts",
+    "build": "node init && bun build --compile --outfile bin/gbrain src/cli.ts",
+    "build:all": "node init && bun build --compile --target=bun-darwin-arm64 --outfile bin/gbrain-darwin-arm64 src/cli.ts && bun build --compile --target=bun-linux-x64 --outfile bin/gbrain-linux-x64 src/cli.ts",
+    "build:admin": "node init && cd admin && bun run build && cd .. && bun run scripts/build-admin-embedded.ts",
+    "build:admin-embedded": "node init && bun run scripts/build-admin-embedded.ts",
+    "build:schema": "node init && bash scripts/build-schema.sh",
+    "build:llms": "node init && bun run scripts/build-llms.ts",
+    "build:pglite-snapshot": "node init && bun run scripts/build-pglite-snapshot.ts",
     "test": "bash scripts/run-unit-parallel.sh",
     "eval:autocut": "bun test test/search/autocut-eval.test.ts",
     "test:full": "bun run verify && bash scripts/run-unit-parallel.sh && bun run test:slow && ([ -n \"$DATABASE_URL\" ] && bash scripts/run-e2e.sh || echo '[test:full] skipped E2E (no DATABASE_URL); run docker-compose -f docker-compose.ci.yml up + bun run test:e2e to include' 1>&2)",
@@ -111,6 +111,7 @@
     "chokidar": "^4.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "eventsource-parser": "^3.0.8",
     "exifr": "^7.1.3",
     "express": "^5.1.0",
@@ -119,6 +120,7 @@
     "heic-decode": "^2.1.0",
     "js-yaml": "^3.14.2",
     "marked": "^18.0.0",
+    "node-fetch": "^3.3.2",
     "openai": "^4.0.0",
     "pgvector": "^0.2.0",
     "postgres": "^3.4.0",
@@ -143,5 +145,5 @@
     "bun": ">=1.3.10"
   },
   "license": "MIT",
-  "version": "0.42.52.0"
+  "version": "0.42.53.0"
 }
